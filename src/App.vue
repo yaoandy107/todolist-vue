@@ -29,7 +29,7 @@
                 v-for="(item, index) of todoList">
                 <todo-item
                   :key="index"
-                  :content="item"
+                  :todo="item"
                   :index="index"
                   @delete="deleteTodo">
                 </todo-item>
@@ -53,6 +53,8 @@
 
 <script>
 import TodoItem from './components/TodoItem.vue'
+import db from './firebase/firestoreInit'
+import firebase from 'firebase'
 export default {
   components: {
     'todo-item': TodoItem
@@ -61,20 +63,45 @@ export default {
     return {
       inputTodo: '',
       todoList: [
-
-      ]
+        
+      ],
+      todoCollection: null
     }
   },
   methods: {
     addTodo () {
       if (this.inputTodo !== '') {
-        this.todoList.push(this.inputTodo)
+        this.todoList.push({
+          content: this.inputTodo
+        })
+        this.todoCollection.add({
+          content: this.inputTodo,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        })
         this.inputTodo = ''
       }
     },
     deleteTodo (index) {
+      this.todoCollection.doc(this.todoList[index].id).delete()
       this.todoList.splice(index, 1)
+    },
+    initFirestore () {
+      this.todoCollection = db.collection('todo');
+      this.todoCollection
+        .orderBy('timestamp')
+        .onSnapshot((todoRef) => {
+            const todos = [];
+            todoRef.forEach((doc) => {
+                const todo = doc.data();
+                todo.id = doc.id;
+                todos.push(todo);
+            });
+            this.todoList = todos;
+        });
     }
+  },
+  created () {
+    this.initFirestore()
   }
 }
 </script>
