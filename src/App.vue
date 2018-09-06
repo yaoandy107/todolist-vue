@@ -28,7 +28,7 @@
               <template
                 v-for="(item, index) of todoList">
                 <todo-item
-                  :key="index"
+                  :key="item.id"
                   :todo="item"
                   :index="index"
                   @delete="deleteTodo">
