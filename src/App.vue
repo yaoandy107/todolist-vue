@@ -7,7 +7,7 @@
         <v-toolbar-side-icon></v-toolbar-side-icon>
       </v-toolbar>
       <!-- 待辦清單 -->
-      <v-layout wrap>
+      <v-layout wrap mb-5>
         <v-flex xs8 offset-xs2>
           <v-card class="card--flex-toolbar">
             <!-- 待辦清單標題 -->
@@ -24,16 +24,22 @@
             
             <!-- 待辦清單列表 -->
             <v-layout column>
-              <todo-item 
-                v-for="(item, index) of todoList"
-                :key="index"
-                :content="item">
-              </todo-item>
+              <template
+                v-for="(item, index) of todoList">
+                <todo-item
+                  :key="index"
+                  :content="item"
+                  :index="index"
+                  @delete="deleteTodo">
+                </todo-item>
+                <v-divider :key="index"></v-divider>
+              </template>
             </v-layout>
             <v-text-field 
               v-model="inputTodo"
-              label="Outline"
+              label="輸入代辦項目"
               box
+              hide-details
               :append-icon="inputTodo ? 'send' : ''"
               @click:append="addTodo"
               @keyup.enter="addTodo">
@@ -60,8 +66,13 @@ export default {
   },
   methods: {
     addTodo () {
-      this.todoList.push(this.inputTodo)
-      this.inputTodo = ''
+      if (this.inputTodo !== '') {
+        this.todoList.push(this.inputTodo)
+        this.inputTodo = ''
+      }
+    },
+    deleteTodo (index) {
+      this.todoList.splice(index, 1)
     }
   }
 }

@@ -1,12 +1,28 @@
 <template>
-  <li>{{content}}</li>
+  <v-container>
+    <v-layout row>
+      <div class="body-1 ma-auto">{{content}}</div>
+      <v-spacer></v-spacer>
+      <v-btn 
+        icon
+        @click="handleDelete">
+        <v-icon>clear</v-icon>
+      </v-btn>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
 export default {
   props: [
-    'content'
-  ]
+    'content',
+    'index'
+  ],
+  methods: {
+    handleDelete () {
+      this.$emit('delete', this.index)
+    }
+  }
 }
 </script>
 
