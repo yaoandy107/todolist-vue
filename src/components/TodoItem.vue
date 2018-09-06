@@ -1,15 +1,13 @@
 <template>
-  <v-container>
-    <v-layout row>
-      <div class="body-1 ma-auto">{{content}}</div>
-      <v-spacer></v-spacer>
-      <v-btn 
-        icon
-        @click="handleDelete">
-        <v-icon>clear</v-icon>
-      </v-btn>
-    </v-layout>
-  </v-container>
+  <v-layout row class="mx-4 my-2">
+    <div class="body-1 ma-auto">{{content}}</div>
+    <v-spacer></v-spacer>
+    <v-btn 
+      icon
+      @click="handleDelete">
+      <v-icon>clear</v-icon>
+    </v-btn>
+  </v-layout>
 </template>
 
 <script>

@@ -1,10 +1,11 @@
 <template>
-  <div id="app">
+  <v-app>
       <v-toolbar
         color="primary"
         dark
         extended>
         <v-toolbar-side-icon></v-toolbar-side-icon>
+        <v-toolbar-title>BlackMaple's TODO</v-toolbar-title>
       </v-toolbar>
       <!-- 待辦清單 -->
       <v-layout wrap mb-5>
@@ -23,7 +24,7 @@
             <v-divider></v-divider>
             
             <!-- 待辦清單列表 -->
-            <v-layout column>
+            <v-layout column style="min-height: 50px;">
               <template
                 v-for="(item, index) of todoList">
                 <todo-item
@@ -37,7 +38,7 @@
             </v-layout>
             <v-text-field 
               v-model="inputTodo"
-              label="輸入代辦項目"
+              label="把要丟給黑楓的工作輸入進來吧～"
               box
               hide-details
               :append-icon="inputTodo ? 'send' : ''"
@@ -47,7 +48,7 @@
           </v-card>
         </v-flex>
       </v-layout>
-  </div>
+  </v-app>
 </template>
 
 <script>
