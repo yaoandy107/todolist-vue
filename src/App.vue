@@ -12,7 +12,7 @@
         <v-flex xs8 offset-xs2>
           <v-card class="card--flex-toolbar">
             <!-- 待辦清單標題 -->
-            <v-toolbar card>
+            <v-toolbar card prominent>
               <v-toolbar-title class="body-2 grey--text">待辦清單</v-toolbar-title>
               <v-spacer></v-spacer>
               <!-- 搜尋按鈕 -->
