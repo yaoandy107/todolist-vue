@@ -86,7 +86,7 @@ export default {
       this.todoList.splice(index, 1)
     },
     initFirestore () {
-      this.todoCollection = db.collection('todo');
+      this.todoCollection = db.collection('todos');
       this.todoCollection
         .orderBy('timestamp')
         .onSnapshot((todoRef) => {
