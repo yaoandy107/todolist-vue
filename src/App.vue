@@ -53,7 +53,7 @@
 
 <script>
 import TodoItem from './components/TodoItem.vue'
-import db from './firebase/firestoreInit'
+import db from './firebase/firebaseInit'
 import firebase from 'firebase'
 export default {
   components: {
