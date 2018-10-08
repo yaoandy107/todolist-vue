@@ -2,7 +2,7 @@
   <v-layout row class="mx-4 my-2">
     <div class="body-1 ma-auto">{{todo.content}}</div>
     <v-spacer></v-spacer>
-    <div v-if="todo.timestamp" class="ma-auto mr-3">時間：{{todo.timestamp.toDate().toLocaleString()}}</div>
+    <div v-if="todo.timestamp" class="ma-auto caption">時間：{{todo.timestamp.toDate().toLocaleString()}}</div>
     <v-btn 
       icon
       @click="handleDelete">
